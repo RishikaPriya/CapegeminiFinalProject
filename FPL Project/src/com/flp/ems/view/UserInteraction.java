@@ -15,9 +15,8 @@ public class UserInteraction {
 	Scanner input = new Scanner(System.in);
 	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 
-	public void addEmployee() throws ParseException {
+	public void addEmployee() throws ParseException{
 		//inputEmployeeDetail();
-		DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 		HashMap<String, Object> employeeList = new HashMap<String,Object>();
 		
 		System.out.println("Enter Employee Details\n");
@@ -27,7 +26,7 @@ public class UserInteraction {
 		employeeList.put("name", name);
 		
 		System.out.println("Enter employee's contact number: ");
-		long phoneNumber = input.nextLong();
+		int phoneNumber = Integer.parseInt(input.nextLine());
 		employeeList.put("phoneNumber",phoneNumber);
 		
 		System.out.println("Enter employee's address: ");
@@ -36,11 +35,11 @@ public class UserInteraction {
 		
 		System.out.println("Enter employee's date of birth: ");
 		String dob = input.nextLine();
-		employeeList.put("dob", dateFormat.parse(dob));
+		employeeList.put("dob", dob);
 		
 		System.out.println("Enter employee's date of joining: ");
 		String joiningDate = input.nextLine();
-		employeeList.put("joining", dateFormat.parse(joiningDate));
+		employeeList.put("joiningDate", joiningDate);
 		
 		System.out.println("Enter employee's department id: ");
 		int deptId = input.nextInt();
