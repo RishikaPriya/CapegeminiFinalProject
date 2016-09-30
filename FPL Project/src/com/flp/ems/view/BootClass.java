@@ -33,7 +33,7 @@ public class BootClass {
 				default : System.out.println("Inavlid choice.");
 			}
 			System.out.println("Do you want to perform more operation (y/n): ");
-			ch= input.nextLine().charAt(0);
+			ch = (char) input.next().charAt(0);
 		}while(ch=='y' || ch=='Y');
 	}
 }
