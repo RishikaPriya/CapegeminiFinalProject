@@ -22,9 +22,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 	
 		Employee emp = new Employee((String) employee.get("name"), (String) employee.get("address"),
-				(Integer) employee.get("phoneNumber"), dateFormat.parse((String) employee.get("dob")),dateFormat.parse((String)employee.get("joiningDate")),
-				this.getDepartment((Integer) employee.get("deptId")), this.getRole((Integer) employee.get("roleId")),
-				this.getProject((Integer) employee.get("projectId")));
+				Integer.parseInt((String) employee.get("phoneNumber")), dateFormat.parse((String) employee.get("dob")),dateFormat.parse((String)employee.get("joiningDate")),
+				this.getDepartment(Integer.parseInt((String) employee.get("deptId"))), this.getRole(Integer.parseInt((String) employee.get("roleId"))),
+				this.getProject(Integer.parseInt((String) employee.get("projectId"))));
 		
 		employeeDAO.addEmployee(emp);
 
@@ -44,20 +44,30 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public void removeEmployee(Integer employeeId) {
-		Employee emp = employeeDAO.searchEmployee(employeeId);
+		Employee emp = employeeDAO.searchEmployeebyId(employeeId);
 		employeeDAO.removeEmployee(emp);
 
 	}
 
 	@Override
-	public void modifyEmployee(HashMap employee) {
-		// TODO Auto-generated method stub
+	public void modifyEmployee(HashMap<String,Object> employee) {
+		int employeeId = Integer.parseInt((String) employee.get("employeeId"));
+		
+		Employee emp = employeeDAO.searchEmployeebyId(employeeId);
+		
+		emp.setAddress((String)employee.get("address"));
+		emp.setPhoneNumber(Integer.parseInt((String) employee.get("phoneNumber")));
+		emp.setDept(this.getDepartment(Integer.parseInt((String) employee.get("deptId"))));
+		emp.setRole(this.getRole(Integer.parseInt((String) employee.get("roleId"))));
+		emp.setProject(this.getProject(Integer.parseInt((String) employee.get("projectId"))));
+		
+		employeeDAO.modifyEmployee(emp);
 
 	}
 
 	@Override
 	public Employee searchEmployee(Integer employeeId) {
-		Employee emp = employeeDAO.searchEmployee(employeeId);
+		Employee emp = employeeDAO.searchEmployeebyId(employeeId);
 		return emp;
 	}
 

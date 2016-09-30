@@ -12,7 +12,7 @@ public interface IEmployeeDao {
 
 	public void removeEmployee(Employee employee);
 
-	public Employee searchEmployee(int employeeId);
+	public Employee searchEmployeebyId(int employeeId);
 
 	public List<Employee> getAllEmployee();
 }

@@ -15,7 +15,8 @@ public class EmployeeDaoImp implements IEmployeeDao{
 
 	@Override
 	public void modifyEmployee(Employee employee) {
-		
+		int index = employeeList.indexOf(employee);
+		employeeList.set(index, employee);
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class EmployeeDaoImp implements IEmployeeDao{
 	}
 
 	@Override
-	public Employee searchEmployee(int employeeId) {
+	public Employee searchEmployeebyId(int employeeId) {
 		
 		for(Employee emp : employeeList){
 			if(emp.getEmployeeId() == employeeId){

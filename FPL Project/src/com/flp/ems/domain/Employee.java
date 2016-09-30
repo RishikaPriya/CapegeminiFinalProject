@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class Employee {
 
-	private static int idGenerator = 1000;
+	private static int idGenerator = 1001;
 	private int employeeId;
 	private String kinId;
 	private String name;
 	private String address;
 	private String emailId;
-	private long phoneNumber;
+	private int phoneNumber;
 	private Date dob;
 	private Date joiningDate;
 	private Department dept;
 	private Role role;
 	private Project project;
 
-	public Employee(String name, String address, long phoneNumber,
+	public Employee(String name, String address, int phoneNumber,
 			Date dob, Date joiningDate, Department dept, Role role, Project project) {
 		this.employeeId = Employee.idGenerator++;
 		this.kinId = generateKinId();
@@ -45,6 +45,26 @@ public class Employee {
 	}
 	public int getEmployeeId() {
 		return employeeId;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public static int getIdGenerator() {
@@ -93,8 +113,17 @@ public class Employee {
 	
 	@Override
 	public String toString() {
-		String.format("Employee Id: " + employeeId + "\nName: " + name);
-		return super.toString();
+		return String.format("Employee Id: " + employeeId + "\nName: " + name + "\nKin-id: " + kinId + "\nContact Number: " + phoneNumber + "\nAddress: " + address + "\nEmail-id: " + emailId +"\n\n");
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Employee emp = (Employee) obj;
+		return (this.getEmployeeId() == emp.getEmployeeId());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getEmployeeId();
+	}
 }

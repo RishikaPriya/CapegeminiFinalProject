@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import com.flp.ems.domain.Employee;
 import com.flp.ems.service.EmployeeServiceImpl;
 
 public class UserInteraction {
@@ -26,7 +27,7 @@ public class UserInteraction {
 		employeeList.put("name", name);
 		
 		System.out.println("Enter employee's contact number: ");
-		int phoneNumber = Integer.parseInt(input.nextLine());
+		String phoneNumber = input.nextLine();
 		employeeList.put("phoneNumber",phoneNumber);
 		
 		System.out.println("Enter employee's address: ");
@@ -42,44 +43,71 @@ public class UserInteraction {
 		employeeList.put("joiningDate", joiningDate);
 		
 		System.out.println("Enter employee's department id: ");
-		int deptId = input.nextInt();
+		String deptId = input.nextLine();
 		employeeList.put("deptId", deptId);
 		
 		System.out.println("Enter employee's role id: ");
-		int roleId = input.nextInt();
+		String roleId = input.nextLine();
 		employeeList.put("roleId", roleId);
 		
 		System.out.println("Enter employee's project id: ");
-		int projectId = input.nextInt();
+		String projectId = input.nextLine();
 		employeeList.put("projectId", projectId);
 		
 		employeeService.addEmployee(employeeList);
 	}
 
 	public void modifyEmployee() {
-
+		HashMap<String, Object> employeeList = new HashMap<String,Object>();
+		
+		System.out.println("Enter employee id: ");
+		String employeeId = input.nextLine();
+		employeeList.put("employeeId", employeeId);
+		
+		System.out.println("Enter Employee Details for Modification\n");
+		
+		System.out.println("Enter employee's contact number: ");
+		String phoneNumber = input.nextLine();
+		employeeList.put("phoneNumber",phoneNumber);
+		
+		System.out.println("Enter employee's address: ");
+		String address = input.nextLine();
+		employeeList.put("address",address);
+		
+		System.out.println("Enter employee's department id: ");
+		String deptId = input.nextLine();
+		employeeList.put("deptId", deptId);
+		
+		System.out.println("Enter employee's role id: ");
+		String roleId = input.nextLine();
+		employeeList.put("roleId", roleId);
+		
+		System.out.println("Enter employee's project id: ");
+		String projectId = input.nextLine();
+		employeeList.put("projectId", projectId);
+		
+		employeeService.modifyEmployee(employeeList);
 	}
 
 	public void removeEmployee() {
 		System.out.println("Enter the employee id: ");
-		int employeeId = input.nextInt();
-		employeeService.removeEmployee(employeeId);
+		String employeeId = input.nextLine();
+		employeeService.removeEmployee(Integer.parseInt(employeeId));
 
 	}
 
 	public void searchEmployee() {
 		System.out.println("Enter the employee id: ");
-		int employeeId = input.nextInt();
-		System.out.println(employeeService.searchEmployee(employeeId));
+		String employeeId = input.nextLine();
+		int id = Integer.parseInt(employeeId);
+		System.out.println(employeeService.searchEmployee(id).toString());
 	}
 
 	public void getAllEmployee() {
-		List empList = employeeService.getAllEmployees();
-		Iterator itr = empList.iterator();
-		
-		 while(itr.hasNext()) {
-	         itr.next().toString();
-	      }
+		List<Employee> empList = employeeService.getAllEmployees();
+		for(Employee emp : empList){
+			System.out.println(emp.toString());
+		}
 		
 	}
 

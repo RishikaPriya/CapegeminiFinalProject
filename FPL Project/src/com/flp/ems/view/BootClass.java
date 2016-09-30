@@ -9,9 +9,8 @@ public class BootClass {
 		Scanner input = new Scanner(System.in);
 		UserInteraction userInteraction = new UserInteraction();
 		
-		int choice;
-		char ch;
-		
+		int choice=0;
+				
 		System.out.println("Employee Management System");
 		
 		do{
@@ -30,10 +29,10 @@ public class BootClass {
 						 break;
 				case 5 : userInteraction.getAllEmployee();
 						 break;
+				case 6:  System.out.println("Exit");
+					     break;
 				default : System.out.println("Inavlid choice.");
 			}
-			System.out.println("Do you want to perform more operation (y/n): ");
-			ch = (char) input.next().charAt(0);
-		}while(ch=='y' || ch=='Y');
+		}while(choice!=6);
 	}
 }
