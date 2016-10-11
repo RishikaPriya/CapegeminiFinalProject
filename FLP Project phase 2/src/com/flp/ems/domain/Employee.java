@@ -5,6 +5,7 @@ import java.util.Date;
 public class Employee {
 
 	private static int idGenerator = 1001;
+	private static int kinIdIncrementer = 600;
 	private int employeeId;
 	private String kinId;
 	private String name;
@@ -54,7 +55,6 @@ public class Employee {
 	}
 
 	private String generateKinId() {
-		int kinIdIncrementer = 600;
 		String kinId = (kinIdIncrementer++) + "_TS";
 		return kinId;
 	}
