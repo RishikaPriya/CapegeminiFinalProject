@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
-<%@page import="java.lang.String"%>
 <%@page import="com.flp.ems.domain.Employee"%>
 <%@page import="com.flp.ems.util.Service"%>
 <%@page import="com.flp.ems.service.IEmployeeService"%>

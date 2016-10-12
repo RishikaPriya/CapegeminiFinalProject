@@ -21,9 +21,9 @@ public class Dao {
 			departmentDao = new DepartmentDao();
 			roleDao = new RoleDao();
 			projectDao = new ProjectDao();
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | IOException |ClassNotFoundException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	public static IEmployeeDao getEmployeeDao() {

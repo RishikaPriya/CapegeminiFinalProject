@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,17 +19,20 @@ public class ProjectDao {
 	private Properties dbProperties;
 	private DepartmentDao departmentDao;
 
-	public ProjectDao() throws SQLException, IOException{
+	public ProjectDao() throws SQLException, IOException, ClassNotFoundException {
 		dbProperties = new Properties();
 
-		/*ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream input = classLoader.getResourceAsStream("/WEB-INF/lib/dbDetails.properties");
-		
-	*/FileInputStream fileInputStream = new FileInputStream("dbDetails.properties");
-		dbProperties.load(fileInputStream);
-		dbConnection = DataSourceFactory.getDataSource(dbProperties.getProperty("jdbc.database.resource"))
-				.getConnection();
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream input = classLoader.getResourceAsStream("dbDetails.properties");
 
+		// FileInputStream fileInputStream = new
+		// FileInputStream("dbDetails.properties");
+		dbProperties.load(input);
+
+		String driver = dbProperties.getProperty("jdbc.driver");
+		Class.forName(driver);
+		
+		dbConnection = DriverManager.getConnection(dbProperties.getProperty("jdbc.url"),"root","root123");
 		departmentDao = new DepartmentDao();
 	}
 
